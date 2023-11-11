@@ -1,5 +1,4 @@
 'use client';
-import { Tags } from '@/app/_components/tags';
 import { DateTag } from '@/app/_components/dateTag';
 import { Project as ProjectProp, ProjectStep } from '@/app/_types';
 import { Patrick_Hand } from 'next/font/google';
@@ -51,7 +50,7 @@ export const Project = ({ project }: { project: ProjectProp }) => {
                 <div className="flex flex-col justify-between lg:w-[250px]">
                     <div className="flex flex-col gap-4">
                         <DateTag date={project.date} />
-                        <Tags labels={project.techstack} />
+
                         <div className="text-justify">
                             <div className="flex flex-col gap-2">
                                 {parsedText}
