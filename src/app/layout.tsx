@@ -1,10 +1,14 @@
-import { Body } from './body';
 import './globals.css';
 import type { Metadata } from 'next';
+import { Inclusive_Sans, Mali } from 'next/font/google';
+import { Header } from './_components/header';
+
+const mali = Mali({ weight: ['400'], subsets: ['latin'] });
+const inclusiveSans = Inclusive_Sans({ weight: ['400'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'mardrew.software',
-    description: 'freelance software developer'
+    title: 'fennavanbreda',
+    description: 'by mardrew.software'
 };
 
 export default async function RootLayout({
@@ -14,7 +18,17 @@ export default async function RootLayout({
 }) {
     return (
         <html lang="en">
-            <Body children={children} />
+            <body
+                className={`min-h-screen flex flex-col justify-between ${mali.className}`}
+            >
+                <div>
+                    <Header />
+
+                    <main className={`w-full ${inclusiveSans.className}`}>
+                        {children}
+                    </main>
+                </div>
+            </body>
         </html>
     );
 }

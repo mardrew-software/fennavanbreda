@@ -11,7 +11,7 @@ export const CredibilityRow = ({ credit }: { credit: Credit }) => {
     const [parsedText, setParsedText] = useState<ReactNode>('');
 
     useEffect(() => {
-        setParsedText(parse(credit.description.html as string, options));
+        setParsedText(parse(credit.description.html, options));
     }, []);
     return (
         <div className="flex flex-row gap-4">

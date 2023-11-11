@@ -9,7 +9,7 @@ export const Step = ({ s }: { s: ProjectStep }) => {
     const [parsedText, setParsedText] = useState<ReactNode>('');
 
     useEffect(() => {
-        setParsedText(parse(s.description.html as string, options));
+        setParsedText(parse(s.description.html, options));
     }, []);
     return (
         <div

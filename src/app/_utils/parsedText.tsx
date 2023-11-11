@@ -31,7 +31,7 @@ export const options: HTMLReactParserOptions = {
         } else if (node.name === 'video') {
             return (
                 <>
-                    {node.attribs.url && (
+                    {node.attribs.id && (
                         <Video
                             video={{
                                 id: node.attribs.id,

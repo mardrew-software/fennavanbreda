@@ -1,71 +1,88 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
-export function Header({
-    menuOpen,
-    setMenuOpen
-}: {
-    menuOpen: boolean;
-    setMenuOpen: () => void;
-}) {
+export function Header() {
+    const [menuOpen, setMenuOpen] = useState(false);
     return (
-        <div
-            className={`flex flex-col  ${
-                menuOpen ? 'bg-[#E9B9BD]' : 'bg-[#ffe280]'
-            }`}
-        >
-            <div className="flex flex-row w-full py-6 px-8 lg:px-16 items-center justify-between">
+        <div className={`flex flex-col`}>
+            <div className="flex flex-row w-full p-8 items-center justify-between">
                 <Link href={'/'}>
-                    <Image
-                        alt="mardrew.software"
-                        src={'/logo_text_rebranded.png'}
-                        width={150}
-                        height={150}
-                    />
+                    <span className="text-2xl hover:text-slate-600">
+                        fenna van breda
+                    </span>
                 </Link>
-                <div className="hidden lg:flex text-2xl flex-row gap-6">
-                    <Link className="hover:underline" href={'/#about'}>
-                        ABOUT
-                    </Link>
-                    <Link className="hover:underline" href={'/#projects'}>
-                        PROJECTS
-                    </Link>
-                    <Link className="hover:underline" href={'/#credibility'}>
-                        CREDIBILITY
-                    </Link>
-                </div>
                 <Image
-                    onClick={setMenuOpen}
-                    className="z-20 flex lg:hidden"
+                    className="cursor-pointer"
+                    onClick={() => setMenuOpen(true)}
                     alt="menu"
-                    width={40}
-                    height={40}
+                    width={30}
+                    height={30}
                     src={'/burger.png'}
                 />
             </div>
             {menuOpen && (
-                <div className="fixed w-full h-screen z-10 mt-[92px] flex lg:hidden bg-[#E9B9BD] px-8 pb-8 pt-16 text-4xl flex-col items-center gap-6">
-                    <Link
-                        onClick={setMenuOpen}
-                        className="bg-white px-4 py-1 shadow-md hover:underline"
-                        href={'#about'}
-                    >
-                        ABOUT
-                    </Link>
-                    <Link
-                        onClick={setMenuOpen}
-                        className="bg-white px-4 py-1 shadow-md  hover:underline"
-                        href={'#projects'}
-                    >
-                        PROJECTS
-                    </Link>
-                    <Link
-                        onClick={setMenuOpen}
-                        className="bg-white px-4 py-1 shadow-md  hover:underline"
-                        href={'#credibility'}
-                    >
-                        CREDIBILITY
-                    </Link>
+                <div className="h-full w-[100%] sm:w-[50%] md:w-[40%] lg:w-[30%] p-8 right-0 top-0 fixed z-10 bg-black p-8">
+                    <div className="flex flex-col items-end h-full justify-between">
+                        <div className="flex flex-row justify-between w-full">
+                            <Link
+                                className="w-[30px] h-full"
+                                target="_blank"
+                                href={'https://www.instagram.com/fennarafaela/'}
+                            >
+                                <Image
+                                    className="w-full h-auto"
+                                    onClick={() => setMenuOpen(true)}
+                                    width={30}
+                                    height={30}
+                                    src={'/instagram.png'}
+                                    alt="instagram"
+                                />
+                            </Link>
+                            <Image
+                                className="w-[30px] h-auto cursor-pointer"
+                                onClick={() => setMenuOpen(false)}
+                                alt="menu"
+                                width={30}
+                                height={30}
+                                src={'/close.png'}
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1 text-right text-2xl">
+                            <Link
+                                className="text-white hover:underline"
+                                href={'/events'}
+                            >
+                                events
+                            </Link>
+                            <Link
+                                className="text-white  hover:underline"
+                                href={'/selected-works'}
+                            >
+                                selected works
+                            </Link>
+                            <Link
+                                className="text-white  hover:underline"
+                                href={'/words'}
+                            >
+                                words
+                            </Link>
+                            <Link
+                                className="text-white  hover:underline"
+                                href={'/archive'}
+                            >
+                                archive
+                            </Link>
+                            <Link
+                                className="text-white hover:underline"
+                                href={'/about'}
+                            >
+                                about
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

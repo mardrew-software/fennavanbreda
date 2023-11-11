@@ -1,30 +1,28 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
     content: [
         './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
         './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-        './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/app/**/*.{js,ts,jsx,tsx,mdx}'
     ],
     theme: {
         extend: {
             animation: {
-                typing: 'typing 500ms steps(100)',
+                spin180: 'spin180 700ms steps(100)'
             },
             keyframes: {
-                typing: {
+                spin180: {
                     from: {
-                        opacity: '0',
-                        width: '0',
+                        transform: 'rotate(-180deg)'
                     },
                     to: {
-                        opacity: '1',
-                        width: '100%',
-                    },
-                },
-            },
-        },
+                        transform: 'rotate(0deg)'
+                    }
+                }
+            }
+        }
     },
-    plugins: [],
-}
-export default config
+    plugins: []
+};
+export default config;

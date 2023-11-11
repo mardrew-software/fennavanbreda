@@ -16,7 +16,7 @@ export const Project = ({ project }: { project: ProjectProp }) => {
     const [parsedText, setParsedText] = useState<ReactNode>('');
 
     useEffect(() => {
-        setParsedText(parse(project.description.html as string, options));
+        setParsedText(parse(project.description.html, options));
     }, []);
     return (
         <div className="flex flex-col gap-8 mt-8 px-8 lg:px-16">

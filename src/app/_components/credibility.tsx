@@ -19,7 +19,7 @@ export const Credibility = async () => {
             <div className="flex flex-col gap-4 lg:w-[70%]">
                 <div className="flex flex-col border-solid border-2 border-black shadow-[6px_6px_0px_0px_#ffe280] rounded-sm p-4 lg:p-6 gap-4">
                     <div className="text-2xl pb-2">working experience</div>
-                    <div className="flex flex-col w-full">
+                    <div className="flex flex-col w-full gap-4">
                         {credits
                             .filter((c: Credit) => c.type === 'experience')
                             .map((c: Credit) => {
@@ -29,7 +29,7 @@ export const Credibility = async () => {
                 </div>
                 <div className="flex flex-col border-solid border-2 border-black p-8 shadow-[6px_6px_0px_0px_#ffe280] rounded-sm p-6 gap-4">
                     <div className="text-2xl pb-2">education</div>
-                    <div className="flex flex-col w-full">
+                    <div className="flex flex-col w-full gap-4">
                         {credits
                             .filter((c: Credit) => c.type === 'education')
                             .map((c: Credit) => {
