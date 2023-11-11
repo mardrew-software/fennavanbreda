@@ -19,7 +19,7 @@ export const Item = ({ item }: { item: ItemType }) => {
     return (
         <div className="flex flex-col gap-8 px-8 pb-16">
             <Link
-                href={'/'}
+                href={`/${item.page}`}
                 className={`cursor-pointer flex gap-2 items-center text-xl`}
             >
                 <Image

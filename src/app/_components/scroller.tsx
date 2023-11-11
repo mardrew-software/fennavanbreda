@@ -2,9 +2,10 @@ import Link from 'next/link';
 import { Item } from '../_types';
 import { FullDate } from './fullDate';
 import Image from 'next/image';
-import { Mali } from 'next/font/google';
+import { Mali, Roboto_Mono } from 'next/font/google';
 
 const mali = Mali({ weight: ['400'], subsets: ['latin'] });
+const robotoMono = Roboto_Mono({ weight: ['400'], subsets: ['latin'] });
 
 export const Scroller = ({
     slug,
@@ -17,7 +18,7 @@ export const Scroller = ({
 }) => {
     return (
         <div className="flex flex-col gap-8 w-full h-full">
-            <div className={`text-2xl ${mali.className}`}>
+            <div className={`text-2xl ${robotoMono.className}`}>
                 {label.toLocaleLowerCase()}
             </div>
 
