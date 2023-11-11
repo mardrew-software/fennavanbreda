@@ -1,13 +1,14 @@
-export type Project = {
-    date: string;
-    slug: string;
+export type Item = {
+    startDate: string;
+    endDate: string;
+    locations: string;
+    urlPath: string;
     id: string;
-    image: Image;
+    mainImage: Image;
     title: string;
-    techstack: string[];
-    steps: ProjectStep[];
-    description: Description;
-    smallDescription: string;
+    details: Description;
+    summary: string;
+    page: 'selectedworks' | 'archive' | 'events' | 'words';
 };
 
 export type Image = {
@@ -18,25 +19,7 @@ export type Image = {
     mimeType: string;
 };
 
-export type ProjectStep = {
-    id: string;
-    image: Image;
-    title: string;
-    description: Description;
-    imageOnRight: boolean;
-};
-
 export type Description = {
     text: string;
     html: string;
 };
-
-export type Credit = {
-    description: Description,
-      endDate: string,
-      id: string,
-      image: Image,
-      startDate: string,
-      title: string,
-      type: 'education' | 'experience'
-}

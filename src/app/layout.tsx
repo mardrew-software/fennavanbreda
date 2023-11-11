@@ -18,16 +18,11 @@ export default async function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body
-                className={`min-h-screen flex flex-col justify-between ${mali.className}`}
-            >
-                <div>
-                    <Header />
-
-                    <main className={`w-full ${inclusiveSans.className}`}>
-                        {children}
-                    </main>
-                </div>
+            <body className={`min-h-screen flex flex-col ${mali.className}`}>
+                <Header />
+                <main className={`w-full ${inclusiveSans.className}`}>
+                    {children}
+                </main>
             </body>
         </html>
     );

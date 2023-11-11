@@ -1,9 +1,9 @@
-import { getItems } from './_api/getItems';
-import { Scroller } from './_components/scroller';
-import { Item } from './_types';
+import { useState } from 'react';
+import { Item } from '../_types';
+import { Scroller } from './scroller';
 
-export default async function Home() {
-    const items = await getItems();
+export const Scrollers = ({ items }: { items: Item[] }) => {
+    const [index, setIndex] = useState(0);
     return (
         <>
             <div className="overflow-hidden max-h-[calc(100vh-96px)] px-8 w-full flex flex-row justify-between gap-16">
@@ -32,4 +32,4 @@ export default async function Home() {
             </div>
         </>
     );
-}
+};

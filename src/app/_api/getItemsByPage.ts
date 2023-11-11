@@ -1,4 +1,4 @@
-export async function getCredits() {
+export async function getItemsByPage(page: string) {
     const response = await fetch(process.env.HYGRAPH_ENDPOINT as string, {
         method: 'POST',
         headers: {
@@ -7,23 +7,23 @@ export async function getCredits() {
         next: { revalidate: 10 },
         body: JSON.stringify({
             query: `        
-            query Credits {
-              credits {
-                description {
-                  html
-                  text
-                }
+            query Items {
+              items(orderBy: createdAt_DESC, where: {page: ${page}}) {
                 endDate
                 id
-                image {
+                location
+                startDate
+                summary
+                title
+                urlPath
+                page
+                mainImage {
                   id
                   url
                   width
+                  mimeType
                   height
                 }
-                startDate
-                title
-                type
               }
             }            
             `
@@ -31,7 +31,7 @@ export async function getCredits() {
     });
     const json = await response.json();
     if (json && json.data) {
-        return json.data.credits;
+        return json.data.items;
     } else {
         return null;
     }
