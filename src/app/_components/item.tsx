@@ -23,7 +23,7 @@ export const Item = ({ item }: { item: ItemType }) => {
             <GoBack slug={`/${item.page}`} />
 
             <div className="w-full flex flex-col items-center">
-                <div className="flex flex-col items-center gap-4 lg:gap-8 lg:max-w-[60%]">
+                <div className="flex flex-col items-center gap-4 lg:gap-8 w-full lg:max-w-[60%]">
                     {item.title && (
                         <div className="flex flex-col items-center gap-1">
                             <div className={`text-3xl ${mali.className}`}>
@@ -50,7 +50,7 @@ export const Item = ({ item }: { item: ItemType }) => {
                             height={item.mainImage.height}
                         />
                     )}
-                    {parsedText}
+                    <div className="flex w-full">{parsedText}</div>
                 </div>
             </div>
         </div>
