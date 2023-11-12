@@ -1,4 +1,4 @@
-export async function getProjects() {
+export async function getAbout() {
     const response = await fetch(process.env.HYGRAPH_ENDPOINT as string, {
         method: 'POST',
         headers: {
@@ -7,32 +7,28 @@ export async function getProjects() {
         next: { revalidate: 10 },
         body: JSON.stringify({
             query: `        
-            query Projects {
-              projects {
-                slug
-                date
-                id
+            query Abouts {
+              abouts {
                 image {
                   id
-                  url
                   height
                   width
+                  url
                 }
+                statement
                 title
-                techstack
                 description {
                   html
                   text
                 }
-                smallDescription
               }
-            }
+            }            
             `
         })
     });
     const json = await response.json();
     if (json && json.data) {
-        return json.data.projects;
+        return json.data.abouts[0];
     } else {
         return null;
     }

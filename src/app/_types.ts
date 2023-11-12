@@ -23,3 +23,11 @@ export type Description = {
     text: string;
     html: string;
 };
+
+export type About = {
+    id: string;
+    image: Image;
+    description: Description;
+    title: string;
+    statement: string;
+};

@@ -1,6 +1,8 @@
+'use client';
 import { useState } from 'react';
 import { Item } from '../_types';
 import { Scroller } from './scroller';
+import { Ball } from './slider';
 
 export const Scrollers = ({ items }: { items: Item[] }) => {
     const [index, setIndex] = useState(0);
@@ -30,7 +32,8 @@ export const Scrollers = ({ items }: { items: Item[] }) => {
                     items={items.filter((i: Item) => i.page === 'archive')}
                 />
             </div>
-            <div className="flex lg:hidden px-8 w-full">
+            <div className="flex flex-col lg:hidden px-8 w-full">
+                <div className="flex flex-row justify-center gap-4 p-4"></div>
                 {index == 0 && (
                     <Scroller
                         slug="events"
