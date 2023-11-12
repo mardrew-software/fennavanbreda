@@ -2,7 +2,7 @@
 import { Mali } from 'next/font/google';
 import Image from 'next/image';
 import { ReactNode, useEffect, useState } from 'react';
-import { options } from '@/app/_utils/parsedText';
+import { options } from '@/app/_utils/options';
 import parse from 'html-react-parser';
 import { Item as ItemType } from '@/app/_types';
 import { FullDate } from './fullDate';
@@ -23,7 +23,7 @@ export const Item = ({ item }: { item: ItemType }) => {
             <GoBack slug={`/${item.page}`} />
 
             <div className="w-full flex flex-col items-center">
-                <div className="flex flex-col items-center gap-4 lg:gap-8 w-full lg:max-w-[60%]">
+                <div className="flex flex-col items-center gap-8 w-full lg:max-w-[60%]">
                     {item.title && (
                         <div className="flex flex-col items-center gap-1">
                             <div className={`text-3xl ${mali.className}`}>
@@ -50,7 +50,9 @@ export const Item = ({ item }: { item: ItemType }) => {
                             height={item.mainImage.height}
                         />
                     )}
-                    <div className="flex w-full">{parsedText}</div>
+                    <div className="flex flex-col gap-8 items-center w-full">
+                        {parsedText}
+                    </div>
                 </div>
             </div>
         </div>

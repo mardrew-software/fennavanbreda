@@ -2,7 +2,7 @@
 import { Roboto_Mono } from 'next/font/google';
 import Image from 'next/image';
 import { ReactNode, useEffect, useState } from 'react';
-import { options } from '@/app/_utils/parsedText';
+import { options } from '@/app/_utils/options';
 import parse from 'html-react-parser';
 import { About, Item as ItemType } from '@/app/_types';
 

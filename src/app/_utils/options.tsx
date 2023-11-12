@@ -3,7 +3,7 @@ import { Element, Text } from 'domhandler';
 import { DOMNode, HTMLReactParserOptions } from 'html-react-parser';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Video } from '../_components/video';
+import ReactPlayer from 'react-player';
 
 export const options: HTMLReactParserOptions = {
     replace(domNode: DOMNode) {
@@ -29,21 +29,16 @@ export const options: HTMLReactParserOptions = {
                     height={parseInt(node.attribs.height)}
                 />
             );
-        } else if (node.name === 'video') {
+        } else if (node.name === 'iframe') {
             return (
-                <>
-                    {node.attribs.id && (
-                        <Video
-                            video={{
-                                id: node.attribs.id,
-                                url: node.attribs.src,
-                                width: parseInt(node.attribs.width),
-                                height: parseInt(node.attribs.height),
-                                mimeType: node.attribs.mimeType
-                            }}
-                        />
-                    )}
-                </>
+                <div className="relative w-[100%] h-[260px] sm:h-[360px] lg:h-[480px]">
+                    <ReactPlayer
+                        className="absolute top-0 left-0"
+                        url={node.attribs.title}
+                        width="100%"
+                        height="100%"
+                    />
+                </div>
             );
         }
     }
