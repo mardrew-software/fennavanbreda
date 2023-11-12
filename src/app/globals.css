@@ -9,11 +9,10 @@
 
     .scrollbar::-webkit-scrollbar-track {
         border-radius: 100vh;
-        background: rgb(226, 226, 226);
     }
 
     .scrollbar::-webkit-scrollbar-thumb {
         border-radius: 100vh;
-        border: 3px solid rgb(105, 105, 105);
+        border: 3px solid rgb(84, 84, 84);
     }
 }
