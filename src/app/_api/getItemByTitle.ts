@@ -8,7 +8,7 @@ export async function getItemByTitle(slug: string) {
         body: JSON.stringify({
             query: `        
             query Items {
-              items(orderBy: createdAt_DESC, where: {urlPath: "sticky-poems"}) {
+              items(orderBy: createdAt_DESC, where: {urlPath: "${slug}"}) {
                 endDate
                 id
                 location

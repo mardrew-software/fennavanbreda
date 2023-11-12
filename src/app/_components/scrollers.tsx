@@ -40,7 +40,7 @@ export const Scrollers = ({ items }: { items: Item[] }) => {
                 )}
                 {index == 1 && (
                     <Scroller
-                        slug="selected-works"
+                        slug="selectedworks"
                         label="Selected works"
                         items={items.filter(
                             (i: Item) => i.page === 'selectedworks'

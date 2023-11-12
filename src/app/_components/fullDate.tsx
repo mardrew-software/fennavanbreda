@@ -30,7 +30,7 @@ export const FullDate = ({
                 </span>
             )}
             {startDate && !endDate && (
-                <span>
+                <span className="font-bold">
                     <DateTag date={startDate} />
                     {' - now'}
                 </span>

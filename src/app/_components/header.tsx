@@ -1,7 +1,10 @@
 'use client';
+import { Roboto_Mono } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+
+const robotoMono = Roboto_Mono({ weight: ['400'], subsets: ['latin'] });
 
 export function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -50,7 +53,9 @@ export function Header() {
                             />
                         </div>
 
-                        <div className="flex flex-col gap-1 text-right text-2xl">
+                        <div
+                            className={`${robotoMono.className} flex flex-col gap-1 text-right text-2xl`}
+                        >
                             <Link
                                 className="text-white hover:underline"
                                 href={'/events'}
@@ -59,7 +64,7 @@ export function Header() {
                             </Link>
                             <Link
                                 className="text-white  hover:underline"
-                                href={'/selected-works'}
+                                href={'/selectedworks'}
                             >
                                 selected works
                             </Link>

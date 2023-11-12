@@ -22,6 +22,7 @@ export const options: HTMLReactParserOptions = {
         } else if (node.name === 'img') {
             return (
                 <Image
+                    className="rounded-sm"
                     alt={node.attribs.title}
                     src={node.attribs.src}
                     width={parseInt(node.attribs.width)}

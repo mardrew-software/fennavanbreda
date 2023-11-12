@@ -1,7 +1,7 @@
 export type Item = {
     startDate: string;
     endDate: string;
-    locations: string;
+    location: string;
     urlPath: string;
     id: string;
     mainImage: Image;

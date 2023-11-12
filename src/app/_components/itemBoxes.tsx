@@ -1,63 +1,53 @@
-import Link from 'next/link';
 import { Item } from '../_types';
-import { FullDate } from './fullDate';
+import Link from 'next/link';
 import Image from 'next/image';
-import { Mali, Roboto_Mono } from 'next/font/google';
+import { FullDate } from './fullDate';
+import { Roboto_Mono } from 'next/font/google';
 
-const mali = Mali({ weight: ['400'], subsets: ['latin'] });
 const robotoMono = Roboto_Mono({ weight: ['400'], subsets: ['latin'] });
 
-export const Scroller = ({
-    slug,
-    label,
+export const ItemBoxes = ({
+    page,
+    pageName,
     items
 }: {
-    slug: string;
-    label: string;
+    page: string;
+    pageName: string;
     items: Item[];
 }) => {
     return (
-        <div className="flex flex-col gap-8 w-full h-full">
-            <Link
-                href={`${slug}`}
-                className={`hover:no-underline underline text-2xl ${robotoMono.className}`}
-            >
-                {label.toLocaleLowerCase()}
-            </Link>
-
-            <div className="h-full flex flex-col gap-8 overflow-y-scroll">
+        <div className="flex flex-col w-full items-center">
+            <div className={`text-2xl mb-8 ${robotoMono.className}`}>
+                {pageName}
+            </div>
+            <div className="flex flex-col gap-8 lg:max-w-[60%]">
                 {items.map((i: Item) => {
                     return (
                         <Link
-                            href={`/${slug}/${i.urlPath}`}
-                            className="flex flex-col gap-2"
+                            href={`/${page}/${i.urlPath}`}
+                            className="w-full flex flex-col lg:flex-row rounded-sm border-solid border-black border-2"
                         >
                             {i.mainImage && (
                                 <Image
-                                    className="rounded-sm"
+                                    className="lg:h-[300px] w-auto"
                                     src={i.mainImage.url}
                                     width={i.mainImage.width}
                                     height={i.mainImage.height}
                                     alt={i.title}
                                 />
                             )}
-                            <div className="flex flex-col gap-1">
+                            <div className="w-full flex flex-col p-4 lg:p-8 gap-1 lg:w-[520px]">
                                 <h1 className="text-xl">{i.title}</h1>
                                 <FullDate
                                     startDate={i.startDate}
                                     endDate={i.endDate}
                                 />
+                                <p className="text-sm">{i.location}</p>
                                 <p>{i.summary}</p>
                             </div>
                         </Link>
                     );
                 })}
-                <Link
-                    href={`/${slug}`}
-                    className={`text-md underline ${mali.className}`}
-                >
-                    see all {label.toLowerCase()}
-                </Link>
             </div>
         </div>
     );

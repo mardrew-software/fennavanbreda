@@ -13,7 +13,7 @@ export default async function Home() {
                     items={items.filter((i: Item) => i.page === 'events')}
                 />
                 <Scroller
-                    slug="selected-works"
+                    slug="selectedworks"
                     label="Selected works"
                     items={items.filter(
                         (i: Item) => i.page === 'selectedworks'
