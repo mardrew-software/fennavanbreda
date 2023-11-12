@@ -20,7 +20,7 @@ export const Scroller = ({
         <div className="flex flex-col gap-8 w-full h-full">
             <Link
                 href={`${slug}`}
-                className={`hover:no-underline underline text-2xl ${robotoMono.className}`}
+                className={`hidden lg:flex hover:no-underline underline text-2xl ${robotoMono.className}`}
             >
                 {label.toLocaleLowerCase()}
             </Link>
@@ -43,11 +43,22 @@ export const Scroller = ({
                             )}
                             <div className="flex flex-col gap-1">
                                 <h1 className="text-xl">{i.title}</h1>
-                                <FullDate
-                                    startDate={i.startDate}
-                                    endDate={i.endDate}
-                                />
-                                <p>{i.summary}</p>
+                                <div className="flex flex-row gap-2">
+                                    <div>{i.location}</div>
+                                    {i.location &&
+                                        (i.startDate || i.endDate) &&
+                                        '/'}
+                                    <FullDate
+                                        startDate={i.startDate}
+                                        endDate={i.endDate}
+                                    />
+                                </div>
+                                <div>
+                                    {i.page === 'events' ||
+                                        (i.page === 'words' && (
+                                            <div>{i.summary}</div>
+                                        ))}
+                                </div>
                             </div>
                         </Link>
                     );

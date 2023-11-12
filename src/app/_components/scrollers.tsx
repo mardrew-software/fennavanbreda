@@ -2,68 +2,54 @@
 import { useState } from 'react';
 import { Item } from '../_types';
 import { Scroller } from './scroller';
-import { Ball } from './slider';
+import { Slider } from './slider';
+
+const indexes = ['events', 'selected works', 'words', 'archive'];
+const slugs = indexes.map((i) => i.toLocaleLowerCase().replaceAll(' ', ''));
 
 export const Scrollers = ({ items }: { items: Item[] }) => {
-    const [index, setIndex] = useState(0);
+    const [currIndex, setCurrIndex] = useState(0);
+
+    const updateIndex = (up: boolean) => {
+        if (up) {
+            setCurrIndex(currIndex == indexes.length - 1 ? 0 : currIndex + 1);
+        } else {
+            setCurrIndex(currIndex == 0 ? indexes.length - 1 : currIndex - 1);
+        }
+    };
+
     return (
         <>
             <div className="hidden lg:flex overflow-hidden max-h-[calc(100vh-96px)] px-8 w-full flex-row justify-between gap-16">
-                <Scroller
-                    slug="events"
-                    label="Events"
-                    items={items.filter((i: Item) => i.page === 'events')}
-                />
-                <Scroller
-                    slug="selectedworks"
-                    label="Selected works"
-                    items={items.filter(
-                        (i: Item) => i.page === 'selectedworks'
-                    )}
-                />
-                <Scroller
-                    slug="words"
-                    label="Words"
-                    items={items.filter((i: Item) => i.page === 'words')}
-                />
-                <Scroller
-                    slug="archive"
-                    label="Archive"
-                    items={items.filter((i: Item) => i.page === 'archive')}
-                />
+                {indexes.map((index: string, n: number) => {
+                    return (
+                        <Scroller
+                            slug={slugs[n]}
+                            label={index}
+                            items={items.filter(
+                                (i: Item) => i.page === slugs[n]
+                            )}
+                        />
+                    );
+                })}
             </div>
-            <div className="flex flex-col lg:hidden px-8 w-full">
-                <div className="flex flex-row justify-center gap-4 p-4"></div>
-                {index == 0 && (
-                    <Scroller
-                        slug="events"
-                        label="Events"
-                        items={items.filter((i: Item) => i.page === 'events')}
-                    />
-                )}
-                {index == 1 && (
-                    <Scroller
-                        slug="selectedworks"
-                        label="Selected works"
-                        items={items.filter(
-                            (i: Item) => i.page === 'selectedworks'
-                        )}
-                    />
-                )}
-                {index == 2 && (
-                    <Scroller
-                        slug="words"
-                        label="Words"
-                        items={items.filter((i: Item) => i.page === 'words')}
-                    />
-                )}
-                {index == 3 && (
-                    <Scroller
-                        slug="archive"
-                        label="Archive"
-                        items={items.filter((i: Item) => i.page === 'archive')}
-                    />
-                )}
+            <div className="flex flex-col pb-8 lg:hidden px-8 w-full">
+                <Slider label={indexes[currIndex]} slide={updateIndex} />
+                {indexes.map((index: string, n: number) => {
+                    return (
+                        <>
+                            {currIndex == n && (
+                                <Scroller
+                                    slug={slugs[n]}
+                                    label={index}
+                                    items={items.filter(
+                                        (i: Item) => i.page === slugs[n]
+                                    )}
+                                />
+                            )}
+                        </>
+                    );
+                })}
             </div>
         </>
     );

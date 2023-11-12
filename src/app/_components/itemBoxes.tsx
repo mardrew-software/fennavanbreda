@@ -36,7 +36,7 @@ export const ItemBoxes = ({
                                     alt={i.title}
                                 />
                             )}
-                            <div className="w-full flex flex-col p-4 lg:p-8 gap-1 lg:w-[520px]">
+                            <div className="w-full flex flex-col p-4 lg:p-8 gap-1 lg:min-w-[500px]">
                                 <h1 className="text-xl">{i.title}</h1>
                                 <FullDate
                                     startDate={i.startDate}

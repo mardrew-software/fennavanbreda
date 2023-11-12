@@ -1,19 +1,28 @@
 import Image from 'next/image';
-export const Ball = ({
+export const Slider = ({
     label,
-    doAction
+    slide
 }: {
     label: string;
-    doAction: () => void;
+    slide: (up: boolean) => void;
 }) => {
     return (
-        <div className="flex flex-row justify-center gap-4 p-4">
-            <Image alt="active ball" src={'/ball.png'} width={20} height={20} />
-            {label}
+        <div className="w-full flex flex-row justify-between gap-4 pt-2 pb-8">
             <Image
-                alt="incative ball"
-                src={'/ball_white.png'}
-                width={20}
+                className="max-h-[22px] cursor-pointer"
+                onClick={() => slide(false)}
+                alt="left arrow"
+                src={'/back.png'}
+                width={40}
+                height={20}
+            />
+            <span className="underline text-2xl">{label}</span>
+            <Image
+                onClick={() => slide(true)}
+                className="max-h-[22px] cursor-pointer transform rotate-180"
+                alt="right arrow"
+                src={'/back.png'}
+                width={40}
                 height={20}
             />
         </div>
