@@ -20,7 +20,7 @@ export const Scrollers = ({ items }: { items: Item[] }) => {
 
     return (
         <>
-            <div className="hidden lg:flex overflow-hidden max-h-[calc(100vh-96px)] px-8 w-full flex-row justify-between gap-16">
+            <div className="hidden lg:flex px-8 w-full flex-row justify-between gap-4">
                 {indexes.map((index: string, n: number) => {
                     return (
                         <Scroller

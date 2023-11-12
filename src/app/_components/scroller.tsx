@@ -25,7 +25,7 @@ export const Scroller = ({
                 {label.toLocaleLowerCase()}
             </Link>
 
-            <div className="h-full flex flex-col gap-8 overflow-y-scroll">
+            <div className="pr-4 scrollbar flex flex-col gap-8 pb-8 h-[calc(100vh-192px)] overflow-y-scroll">
                 {items.map((i: Item) => {
                     return (
                         <Link
