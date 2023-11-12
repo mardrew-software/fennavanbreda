@@ -57,30 +57,35 @@ export function Header() {
                             className={`${robotoMono.className} flex flex-col gap-1 text-right text-2xl`}
                         >
                             <Link
+                                onClick={() => setMenuOpen(false)}
                                 className="text-white hover:underline"
                                 href={'/events'}
                             >
                                 events
                             </Link>
                             <Link
+                                onClick={() => setMenuOpen(false)}
                                 className="text-white  hover:underline"
                                 href={'/selectedworks'}
                             >
                                 selected works
                             </Link>
                             <Link
+                                onClick={() => setMenuOpen(false)}
                                 className="text-white  hover:underline"
                                 href={'/words'}
                             >
                                 words
                             </Link>
                             <Link
+                                onClick={() => setMenuOpen(false)}
                                 className="text-white  hover:underline"
                                 href={'/archive'}
                             >
                                 archive
                             </Link>
                             <Link
+                                onClick={() => setMenuOpen(false)}
                                 className="text-white hover:underline"
                                 href={'/about'}
                             >
