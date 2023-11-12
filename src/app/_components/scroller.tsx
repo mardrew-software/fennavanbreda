@@ -25,44 +25,48 @@ export const Scroller = ({
                 {label.toLocaleLowerCase()}
             </Link>
 
-            <div className="pr-4 scrollbar flex flex-col gap-8 pb-8 h-[calc(100vh-192px)] overflow-y-scroll">
-                {items.map((i: Item) => {
-                    return (
-                        <Link
-                            href={`/${slug}/${i.urlPath}`}
-                            className="flex flex-col gap-2"
-                        >
-                            {i.mainImage && (
-                                <Image
-                                    className="rounded-sm"
-                                    src={i.mainImage.url}
-                                    width={i.mainImage.width}
-                                    height={i.mainImage.height}
-                                    alt={i.title}
-                                />
-                            )}
-                            <div className="flex flex-col gap-1">
-                                <h1 className="text-xl">{i.title}</h1>
-                                <div className="flex flex-row gap-2">
-                                    <div>{i.location}</div>
-                                    {i.location &&
-                                        (i.startDate || i.endDate) &&
-                                        '/'}
-                                    <FullDate
-                                        startDate={i.startDate}
-                                        endDate={i.endDate}
+            <div className="pr-4 scrollbar flex flex-col gap-4 pb-8 h-[calc(100vh-176px)] overflow-y-scroll">
+                <div className="flex flex-col gap-8">
+                    {items.map((i: Item) => {
+                        return (
+                            <Link
+                                href={`/${slug}/${i.urlPath}`}
+                                className="flex flex-col gap-2"
+                            >
+                                {i.mainImage && (
+                                    <Image
+                                        className="rounded-sm"
+                                        src={i.mainImage.url}
+                                        width={i.mainImage.width}
+                                        height={i.mainImage.height}
+                                        alt={i.title}
                                     />
+                                )}
+                                <div className="flex flex-col">
+                                    <h1 className="text-xl">{i.title}</h1>
+                                    <div className="flex flex-row gap-2 flex-wrap">
+                                        <FullDate
+                                            startDate={i.startDate}
+                                            endDate={i.endDate}
+                                        />
+                                        {i.location &&
+                                            (i.startDate || i.endDate) &&
+                                            '/'}
+                                        <div className="font-bold">
+                                            {i.location}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        {i.page === 'events' ||
+                                            (i.page === 'words' && (
+                                                <div>{i.summary}</div>
+                                            ))}
+                                    </div>
                                 </div>
-                                <div>
-                                    {i.page === 'events' ||
-                                        (i.page === 'words' && (
-                                            <div>{i.summary}</div>
-                                        ))}
-                                </div>
-                            </div>
-                        </Link>
-                    );
-                })}
+                            </Link>
+                        );
+                    })}
+                </div>
                 <Link
                     href={`/${slug}`}
                     className={`text-md underline ${mali.className}`}

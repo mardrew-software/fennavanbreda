@@ -30,14 +30,14 @@ export const Item = ({ item }: { item: ItemType }) => {
                                 {item.title}
                             </div>
                             <div className="flex flex-row gap-2">
-                                <div>{item.location}</div>
-                                {item.location &&
-                                    (item.startDate || item.endDate) &&
-                                    '/'}
                                 <FullDate
                                     startDate={item.startDate}
                                     endDate={item.endDate}
                                 />
+                                {item.location &&
+                                    (item.startDate || item.endDate) &&
+                                    '/'}
+                                <div className="font-bold">{item.location}</div>
                             </div>
                         </div>
                     )}
