@@ -25,10 +25,10 @@ export const Content = ({ about }: { about: About }) => {
                         {about.title}
                     </div>
                 )}
-                <div className="flex flex-row justify-center gap-8">
+                <div className="flex lg:flex-row flex-col justify-center gap-8 w-full">
                     {about.image && (
                         <Image
-                            className="rounded-sm max-w-[40%]"
+                            className="lg:max-h-[300px] rounded-sm"
                             alt="main image"
                             src={about.image.url}
                             width={about.image.width}
