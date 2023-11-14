@@ -8,7 +8,7 @@ export async function getItems() {
         body: JSON.stringify({
             query: `        
             query Items {
-              items(orderBy: createdAt_DESC, first: 100) {
+              items(orderBy: order_DESC, first: 100) {
                 endDate
                 id
                 location
