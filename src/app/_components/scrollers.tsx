@@ -24,6 +24,7 @@ export const Scrollers = ({ items }: { items: Item[] }) => {
                 {indexes.map((index: string, n: number) => {
                     return (
                         <Scroller
+                            key={n}
                             slug={slugs[n]}
                             label={index}
                             items={items.filter(
@@ -37,7 +38,7 @@ export const Scrollers = ({ items }: { items: Item[] }) => {
                 <Slider label={indexes[currIndex]} slide={updateIndex} />
                 {indexes.map((index: string, n: number) => {
                     return (
-                        <>
+                        <div key={n} className="flex flex-col w-full">
                             {currIndex == n && (
                                 <Scroller
                                     slug={slugs[n]}
@@ -47,7 +48,7 @@ export const Scrollers = ({ items }: { items: Item[] }) => {
                                     )}
                                 />
                             )}
-                        </>
+                        </div>
                     );
                 })}
             </div>

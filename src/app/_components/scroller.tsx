@@ -27,9 +27,10 @@ export const Scroller = ({
 
             <div className="pr-4 scrollbar flex flex-col gap-4 pb-4 lg:pb-8 h-[calc(100vh-176px)] overflow-y-scroll">
                 <div className="flex flex-col gap-8">
-                    {items.map((i: Item) => {
+                    {items.map((i: Item, n: number) => {
                         return (
                             <Link
+                                key={'item' + n}
                                 href={`/${slug}/${i.urlPath}`}
                                 className="flex flex-col gap-2"
                             >

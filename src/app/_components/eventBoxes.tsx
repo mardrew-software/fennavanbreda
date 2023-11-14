@@ -21,9 +21,10 @@ export const EventBoxes = ({
                 {pageName}
             </div>
             <div className="flex flex-col gap-8 lg:max-w-[60%]">
-                {items.map((i: Item) => {
+                {items.map((i: Item, n: number) => {
                     return (
                         <Link
+                            key={'event' + n}
                             href={`/${page}/${i.urlPath}`}
                             className="flex flex-row gap-4"
                         >

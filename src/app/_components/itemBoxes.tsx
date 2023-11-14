@@ -21,9 +21,10 @@ export const ItemBoxes = ({
                 {pageName}
             </div>
             <div className="flex flex-col gap-8 lg:max-w-[60%]">
-                {items.map((i: Item) => {
+                {items.map((i: Item, n) => {
                     return (
                         <Link
+                            key={'item' + n}
                             href={`/${page}/${i.urlPath}`}
                             className="w-full flex flex-col lg:flex-row rounded-sm border-solid border-black border-2"
                         >
@@ -36,14 +37,14 @@ export const ItemBoxes = ({
                                     alt={i.title}
                                 />
                             )}
-                            <div className="w-full flex flex-col p-4 lg:p-8 gap-1 lg:min-w-[500px]">
+                            <div className="w-full flex flex-col p-4 lg:p-8 gap-1">
                                 <h1 className="text-xl">{i.title}</h1>
                                 <FullDate
                                     startDate={i.startDate}
                                     endDate={i.endDate}
                                 />
                                 <p className="text-sm">{i.location}</p>
-                                <p>{i.summary}</p>
+                                <p className="flex">{i.summary}</p>
                             </div>
                         </Link>
                     );
