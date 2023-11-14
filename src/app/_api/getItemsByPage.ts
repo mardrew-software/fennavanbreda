@@ -8,7 +8,7 @@ export async function getItemsByPage(page: string) {
         body: JSON.stringify({
             query: `        
             query Items {
-              items(orderBy: createdAt_DESC, where: {page: ${page}}) {
+              items(orderBy: order_DESC, first: 100, where: {page: ${page}}) {
                 endDate
                 id
                 location
