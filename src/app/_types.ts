@@ -27,7 +27,30 @@ export type Description = {
 export type About = {
     id: string;
     image: Image;
-    description: Description;
-    title: string;
-    statement: string;
+    segments: Segment[];
+};
+
+export type Segment = {
+    type: string;
+    width: number;
+    content: Image2 | Text;
+};
+
+export type Text = {
+    text: {
+        text: string;
+        html: string;
+    };
+};
+
+export type Image2 = {
+    image: {
+        id: string;
+        height: number;
+        width: number;
+        url: string;
+        mimeType: string;
+    };
+
+    alt?: string;
 };

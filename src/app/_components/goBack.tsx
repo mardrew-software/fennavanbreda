@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-export const GoBack = ({ slug }: { slug: string }) => {
+export const GoBack = () => {
     return (
         <>
             <Link
-                href={slug}
+                href={'/'}
                 className={`cursor-pointer flex gap-2 items-center text-xl`}
             >
                 <Image
@@ -14,7 +14,6 @@ export const GoBack = ({ slug }: { slug: string }) => {
                     width={40}
                     height={20}
                 />
-                <span>go back</span>
             </Link>
         </>
     );

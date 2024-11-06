@@ -1,10 +1,9 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inclusive_Sans, Mali } from 'next/font/google';
+import { Work_Sans } from 'next/font/google';
 import { Header } from './_components/header';
 
-const mali = Mali({ weight: ['400'], subsets: ['latin'] });
-const inclusiveSans = Inclusive_Sans({ weight: ['400'], subsets: ['latin'] });
+const workSans = Work_Sans({ weight: ['400'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
     title: 'fennavanbreda',
@@ -18,9 +17,9 @@ export default async function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={`min-h-screen flex flex-col ${mali.className}`}>
+            <body className={`min-h-screen flex flex-col`}>
                 <Header />
-                <main className={`w-full ${inclusiveSans.className}`}>
+                <main className={`w-full ${workSans.className}`}>
                     {children}
                 </main>
             </body>

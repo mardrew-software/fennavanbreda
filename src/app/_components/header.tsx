@@ -1,100 +1,43 @@
 'use client';
-import { Roboto_Mono } from 'next/font/google';
-import Image from 'next/image';
+import { Antic_Didone } from 'next/font/google';
 import Link from 'next/link';
-import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { GoBack } from './goBack';
 
-const robotoMono = Roboto_Mono({ weight: ['400'], subsets: ['latin'] });
+const anticDidone = Antic_Didone({ weight: ['400'], subsets: ['latin'] });
 
 export function Header() {
-    const [menuOpen, setMenuOpen] = useState(false);
+    const pathname = usePathname();
+
     return (
         <div className={`flex flex-col`}>
-            <div className="flex flex-row w-full p-8 items-center justify-between">
-                <Link href={'/'}>
-                    <span className="text-2xl hover:text-slate-600">
-                        fenna van breda
-                    </span>
-                </Link>
-                <Image
-                    className="cursor-pointer"
-                    onClick={() => setMenuOpen(true)}
-                    alt="menu"
-                    width={30}
-                    height={30}
-                    src={'/burger.png'}
-                />
-            </div>
-            {menuOpen && (
-                <div className="h-full w-[100%] sm:w-[50%] md:w-[40%] lg:w-[30%] p-8 right-0 top-0 fixed z-10 bg-black p-8">
-                    <div className="flex flex-col items-end h-full justify-between">
-                        <div className="flex flex-row justify-between w-full">
-                            <Link
-                                className="w-[30px] h-full"
-                                target="_blank"
-                                href={'https://www.instagram.com/fennarafaela/'}
-                            >
-                                <Image
-                                    className="w-full h-auto"
-                                    onClick={() => setMenuOpen(true)}
-                                    width={30}
-                                    height={30}
-                                    src={'/instagram.png'}
-                                    alt="instagram"
-                                />
-                            </Link>
-                            <Image
-                                className="w-[30px] h-auto cursor-pointer"
-                                onClick={() => setMenuOpen(false)}
-                                alt="menu"
-                                width={30}
-                                height={30}
-                                src={'/close.png'}
-                            />
-                        </div>
-
-                        <div
-                            className={`${robotoMono.className} flex flex-col gap-1 text-right text-2xl`}
-                        >
-                            <Link
-                                onClick={() => setMenuOpen(false)}
-                                className="text-white hover:underline"
-                                href={'/events'}
-                            >
-                                events
-                            </Link>
-                            <Link
-                                onClick={() => setMenuOpen(false)}
-                                className="text-white  hover:underline"
-                                href={'/selectedworks'}
-                            >
-                                selected works
-                            </Link>
-                            <Link
-                                onClick={() => setMenuOpen(false)}
-                                className="text-white  hover:underline"
-                                href={'/words'}
-                            >
-                                words
-                            </Link>
-                            <Link
-                                onClick={() => setMenuOpen(false)}
-                                className="text-white  hover:underline"
-                                href={'/archive'}
-                            >
-                                archive
-                            </Link>
-                            <Link
-                                onClick={() => setMenuOpen(false)}
-                                className="text-white hover:underline"
-                                href={'/about'}
-                            >
-                                about
-                            </Link>
-                        </div>
+            <div className={`grid grid-cols-3 w-full p-4 items-center`}>
+                <div>
+                    <div className={`${pathname == '/' ? 'hidden' : ''}`}>
+                        <GoBack />
                     </div>
                 </div>
-            )}
+                <Link href={'/'} className="flex justify-center">
+                    <span
+                        className={`${anticDidone.className} tracking-widest text-4xl hover:text-blue-800`}
+                    >
+                        Fenna van Breda
+                    </span>
+                </Link>
+                <div className="flex gap-2 items-center justify-end px-[1rem]">
+                    <Link href={'/about'}>
+                        <h2
+                            className={`${
+                                pathname.includes('about')
+                                    ? 'text-blue-800'
+                                    : ''
+                            } hover:text-blue-800 underline font-bold uppercase`}
+                        >
+                            about
+                        </h2>
+                    </Link>
+                </div>
+            </div>
         </div>
     );
 }

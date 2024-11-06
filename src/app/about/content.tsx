@@ -1,44 +1,48 @@
 'use client';
-import { Roboto_Mono } from 'next/font/google';
 import Image from 'next/image';
-import { ReactNode, useEffect, useState } from 'react';
-import { options } from '@/app/_utils/options';
-import parse from 'html-react-parser';
-import { About, Item as ItemType } from '@/app/_types';
-
-const robotoMono = Roboto_Mono({ weight: ['400'], subsets: ['latin'] });
+import { About, Segment, Image2 as _Image, Text } from '@/app/_types';
+import RichTextParser from '../_components/richTextParser';
 
 export const Content = ({ about }: { about: About }) => {
-    const [parsedText, setParsedText] = useState<ReactNode>('');
-
-    useEffect(() => {
-        if (about.description) {
-            setParsedText(parse(about.description.html, options));
-        }
-    }, []);
-
     return (
-        <div className="w-full flex flex-col items-center">
-            <div className="flex flex-col items-center gap-4 lg:gap-8 lg:max-w-[60%]">
-                {about.title && (
-                    <div className={`text-3xl ${robotoMono.className}`}>
-                        {about.title}
-                    </div>
-                )}
-                <div className="flex lg:flex-row flex-col justify-center gap-8 w-full">
-                    {about.image && (
-                        <Image
-                            className="lg:max-h-[300px] rounded-sm"
-                            alt="main image"
-                            src={about.image.url}
-                            width={about.image.width}
-                            height={about.image.height}
-                        />
-                    )}
-                    <div>{about.statement}</div>
-                </div>
-                <div className="flex flex-col gap-4">{parsedText}</div>
-            </div>
+        <div className="w-full flex flex-wrap gap-6 items-start">
+            {about.segments.map((s: Segment, index: number) => {
+                let content;
+                if (s.type === 'image') {
+                    content = s.content as _Image;
+                    return (
+                        <div>
+                            <Image
+                                key={index}
+                                alt={content.alt as string}
+                                src={content.image.url}
+                                width={content.image.width}
+                                height={content.image.height}
+                            />
+                        </div>
+                    );
+                } else {
+                    content = s.content as Text;
+                    return (
+                        <div style={{ maxWidth: `${s.width}px` }}>
+                            <RichTextParser html={content.text.html} />
+                        </div>
+                    );
+                }
+            })}
+
+            {/* <Link
+                className="w-[30px] h-full justify-center items-center"
+                target="_blank"
+                href={'https://www.instagram.com/fennarafaela/'}
+            >
+                <Image
+                    width={30}
+                    height={30}
+                    src={'/instagram.png'}
+                    alt="instagram"
+                />
+            </Link> */}
         </div>
     );
 };

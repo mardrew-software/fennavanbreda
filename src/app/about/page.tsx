@@ -4,10 +4,10 @@ import { Content } from './content';
 
 export default async function Page() {
     const about = await getAbout();
+
     return (
         <>
-            <div className="flex flex-col gap-8 px-8 pb-16">
-                <GoBack slug={'/'} />
+            <div className="flex flex-col gap-4 px-4 py-4 max-w-screen">
                 {about && <Content about={about} />}
             </div>
         </>

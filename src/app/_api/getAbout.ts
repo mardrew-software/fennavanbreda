@@ -9,20 +9,31 @@ export async function getAbout() {
             query: `        
             query Abouts {
               abouts {
-                image {
-                  id
-                  height
-                  width
-                  url
-                }
-                statement
-                title
-                description {
-                  html
-                  text
+                id
+                segments {
+                  type
+                  content {
+                    ... on Image {
+                      id
+                      image {
+                        url
+                        width
+                        size
+                        height
+                      }
+                      alt
+                    }
+                    ... on Text {
+                      id
+                      text {
+                        html
+                        text
+                      }
+                    }
+                  }
                 }
               }
-            }            
+            }
             `
         })
     });
