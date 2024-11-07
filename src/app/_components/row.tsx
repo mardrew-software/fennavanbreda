@@ -9,6 +9,7 @@ import {
     SegmentImage
 } from '@/app/_types';
 import RichTextParser from '../_components/richTextParser';
+import Link from 'next/link';
 
 export const Row = ({
     row,
@@ -17,6 +18,7 @@ export const Row = ({
     row: _Row;
     openLightbox: (val: string) => void;
 }) => {
+    if (row.width == 400) row.width = 401;
     return (
         <div
             className={`${
@@ -53,11 +55,27 @@ export const Row = ({
                                     )}
                                 </div>
                             ) : (
-                                <embed
-                                    className="h-[400px] lg:h-[800px]"
-                                    src={content.image.url}
-                                    width="100%"
-                                />
+                                <>
+                                    <iframe
+                                        className={`hidden lg:inline h-[800px]`}
+                                        src={content.image.url}
+                                        width="100%"
+                                    />
+                                    <Link
+                                        className="hover:opacity-75 flex items-align gap-2 lg:hidden flex justify-center underline cursor-pointer hover:text-blue-800 bg-gray-100 round-sm p-4"
+                                        href={content.image.url}
+                                        target="_blank"
+                                    >
+                                        <Image
+                                            className="w-[24px] h-[24px]"
+                                            alt="download"
+                                            src={'/download.png'}
+                                            width={20}
+                                            height={5}
+                                        />
+                                        Download {content.meta ?? 'pdf'}
+                                    </Link>
+                                </>
                             )}
                         </div>
                     );
