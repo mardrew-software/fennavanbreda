@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Item } from '../_types';
 import { Scroller } from './scroller';
 import { Slider } from './slider';
@@ -10,6 +10,7 @@ const slugs = indexes.map((i) => i.toLocaleLowerCase().replaceAll(' ', ''));
 export const Scrollers = ({ items }: { items: Item[] }) => {
     const [currIndex, setCurrIndex] = useState(0);
     const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
+    const [isSwiping, setIsSwiping] = useState(false);
 
     const updateIndex = (up: boolean) => {
         if (up) {
@@ -18,6 +19,48 @@ export const Scrollers = ({ items }: { items: Item[] }) => {
             setCurrIndex(currIndex == 0 ? indexes.length - 1 : currIndex - 1);
         }
     };
+
+    useEffect(() => {
+        let startX = 0;
+        let startY = 0;
+
+        const handleTouchStart = (e: TouchEvent) => {
+            if (isSwiping) return;
+            const touchStart = e.touches[0];
+            startX = touchStart.clientX;
+            startY = touchStart.clientY;
+            setIsSwiping(true);
+        };
+
+        const handleTouchMove = (e: TouchEvent) => {
+            if (!isSwiping) return;
+            const touchMove = e.touches[0];
+            const diffX = touchMove.clientX - startX;
+            const diffY = touchMove.clientY - startY;
+
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                if (diffX > 0) {
+                    updateIndex(true);
+                } else {
+                    updateIndex(false);
+                }
+            }
+            setIsSwiping(false);
+        };
+
+        const handleTouchEnd = () => {
+            setIsSwiping(false);
+        };
+
+        document.addEventListener('touchstart', handleTouchStart);
+        document.addEventListener('touchmove', handleTouchMove);
+        document.addEventListener('touchend', handleTouchEnd);
+        return () => {
+            document.removeEventListener('touchstart', handleTouchStart);
+            document.removeEventListener('touchmove', handleTouchMove);
+            document.removeEventListener('touchend', handleTouchEnd);
+        };
+    }, [isSwiping]);
 
     return (
         <>

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://fennavanbreda.com
+
+# Sitemaps
+Sitemap: https://fennavanbreda.com/sitemap.xml

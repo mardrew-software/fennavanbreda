@@ -12,26 +12,26 @@ export function Header() {
     return (
         <div className={`flex flex-col`}>
             <div className={`grid grid-cols-12 w-full p-4 items-center`}>
-                <div className="col-span-2">
+                <div className="lg:inline lg:col-span-2 hidden">
                     <div className={`${pathname == '/' ? 'hidden' : ''}`}>
                         <GoBack />
                     </div>
                 </div>
                 <Link href={'/'} className="flex justify-center col-span-8">
                     <span
-                        className={`${anticDidone.className} tracking-widest text-4xl hover:text-blue-800`}
+                        className={`${anticDidone.className} tracking-widest text-2xl lg:text-4xl hover:text-blue-800`}
                     >
                         Fenna van Breda
                     </span>
                 </Link>
-                <div className="flex gap-2 items-center justify-end px-[1rem] col-span-2">
+                <div className="flex gap-2 items-center justify-end px-[1rem] col-span-4 lg:col-span-2">
                     <Link href={'/about'}>
                         <h2
                             className={`${
                                 pathname.includes('about')
                                     ? 'text-blue-800'
                                     : ''
-                            } hover:text-blue-800 underline  tracking-wider uppercase`}
+                            } hover:text-blue-800 underline text-md tracking-wider uppercase`}
                         >
                             about
                         </h2>
