@@ -21,7 +21,7 @@ export const Row = ({
         <div
             className={`${
                 row.width ? 'max-w-[' + row.width + 'px]' : 'w-full'
-            } grid gap-8 justify-${row.align}`}
+            } flex flex-col lg:grid gap-8 justify-${row.align}`}
             style={{
                 gridTemplateColumns: `repeat(${row.columns}, minmax(0, ${
                     row.width ? row.width / row.columns + 'px' : '1fr'

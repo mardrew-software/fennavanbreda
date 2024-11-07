@@ -1,3 +1,4 @@
+'use client';
 import { Gamja_Flower } from 'next/font/google';
 import Image from 'next/image';
 

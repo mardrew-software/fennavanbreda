@@ -11,7 +11,9 @@ export function Header() {
 
     return (
         <div className={`flex flex-col`}>
-            <div className={`grid grid-cols-12 w-full p-4 items-center`}>
+            <div
+                className={`grid grid-cols-12 w-full pb-2 pt-4 px-4 lg:p-4 items-center`}
+            >
                 <div className="lg:inline lg:col-span-2 hidden">
                     <div className={`${pathname == '/' ? 'hidden' : ''}`}>
                         <GoBack />

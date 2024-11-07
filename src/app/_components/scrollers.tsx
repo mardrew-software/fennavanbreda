@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { SetStateAction, useEffect, useRef, useState } from 'react';
 import { Item } from '../_types';
 import { Scroller } from './scroller';
 import { Slider } from './slider';
@@ -10,7 +10,8 @@ const slugs = indexes.map((i) => i.toLocaleLowerCase().replaceAll(' ', ''));
 export const Scrollers = ({ items }: { items: Item[] }) => {
     const [currIndex, setCurrIndex] = useState(0);
     const [hoveredColumn, setHoveredColumn] = useState<number | null>(null);
-    const [isSwiping, setIsSwiping] = useState(false);
+    const [touchStart, setTouchStart] = useState(null);
+    const [touchEnd, setTouchEnd] = useState(null);
 
     const updateIndex = (up: boolean) => {
         if (up) {
@@ -20,47 +21,20 @@ export const Scrollers = ({ items }: { items: Item[] }) => {
         }
     };
 
-    useEffect(() => {
-        let startX = 0;
-        let startY = 0;
-
-        const handleTouchStart = (e: TouchEvent) => {
-            if (isSwiping) return;
-            const touchStart = e.touches[0];
-            startX = touchStart.clientX;
-            startY = touchStart.clientY;
-            setIsSwiping(true);
-        };
-
-        const handleTouchMove = (e: TouchEvent) => {
-            if (!isSwiping) return;
-            const touchMove = e.touches[0];
-            const diffX = touchMove.clientX - startX;
-            const diffY = touchMove.clientY - startY;
-
-            if (Math.abs(diffX) > Math.abs(diffY)) {
-                if (diffX > 0) {
-                    updateIndex(true);
-                } else {
-                    updateIndex(false);
-                }
-            }
-            setIsSwiping(false);
-        };
-
-        const handleTouchEnd = () => {
-            setIsSwiping(false);
-        };
-
-        document.addEventListener('touchstart', handleTouchStart);
-        document.addEventListener('touchmove', handleTouchMove);
-        document.addEventListener('touchend', handleTouchEnd);
-        return () => {
-            document.removeEventListener('touchstart', handleTouchStart);
-            document.removeEventListener('touchmove', handleTouchMove);
-            document.removeEventListener('touchend', handleTouchEnd);
-        };
-    }, [isSwiping]);
+    const minSwipeDistance = 50;
+    const onTouchStart = (e: any) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+    const onTouchMove = (e: any) => setTouchEnd(e.targetTouches[0].clientX);
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+        if (isLeftSwipe) updateIndex(false);
+        if (isRightSwipe) updateIndex(true);
+    };
 
     return (
         <>
@@ -91,7 +65,12 @@ export const Scrollers = ({ items }: { items: Item[] }) => {
                     );
                 })}
             </div>
-            <div className="flex flex-col pb-8 lg:hidden px-8 w-full">
+            <div
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+                className="flex flex-col pb-8 lg:hidden px-8 w-full"
+            >
                 <Slider label={indexes[currIndex]} slide={updateIndex} />
                 {indexes.map((index: string, n: number) => {
                     return (
