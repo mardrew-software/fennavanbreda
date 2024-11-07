@@ -53,10 +53,10 @@ export const Row = ({
                                     )}
                                 </div>
                             ) : (
-                                <iframe
+                                <embed
+                                    className="h-[400px] lg:h-[800px]"
                                     src={content.image.url}
                                     width="100%"
-                                    height="800px"
                                 />
                             )}
                         </div>
