@@ -13,20 +13,36 @@ export async function getItemByTitle(slug: string) {
                 id
                 location
                 startDate
-                summary
                 title
                 urlPath
                 page
-                mainImage {
-                  id
-                  url
+                meta
+                rows {
+                  columns
                   width
-                  mimeType
-                  height
-                }
-                details {
-                  html
-                  text
+                  align
+                  segments {
+                    type
+                    content {
+                      ... on Image {
+                        id
+                        image {
+                          url
+                          width
+                          size
+                          height
+                        }
+                        alt
+                      }
+                      ... on Text {
+                        id
+                        text {
+                          html
+                          text
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }   

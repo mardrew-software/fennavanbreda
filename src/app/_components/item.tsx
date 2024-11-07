@@ -1,17 +1,12 @@
 'use client';
 import { Gamja_Flower, Mali } from 'next/font/google';
-import Image from 'next/image';
-import { ReactNode, useEffect, useState } from 'react';
-import parse from 'html-react-parser';
 import { Item as ItemType } from '@/app/_types';
 import { FullDate } from './fullDate';
-import { GoBack } from './goBack';
+import { Rows } from './rows';
 
 const ganjaFlower = Gamja_Flower({ weight: ['400'], subsets: ['latin'] });
 
 export const Item = ({ item }: { item: ItemType }) => {
-    const [parsedText, setParsedText] = useState<ReactNode>('');
-
     return (
         <div className="w-full flex flex-col items-center px-4 gap-8">
             {item.title && (
@@ -39,18 +34,7 @@ export const Item = ({ item }: { item: ItemType }) => {
                     </div>
                 </div>
             )}
-            <div className="text-justify">{item.summary}</div>
-            {item.mainImage && (
-                <Image
-                    alt="main image"
-                    src={item.mainImage.url}
-                    width={item.mainImage.width}
-                    height={item.mainImage.height}
-                />
-            )}
-            <div className="flex flex-col gap-8 items-center w-full">
-                {parsedText}
-            </div>
+            {item.rows && <Rows rows={item.rows} />}
         </div>
     );
 };

@@ -1,17 +1,32 @@
 'use client';
 import Image from 'next/image';
-import { About, Segment, Image2 as _Image, Text } from '@/app/_types';
+import {
+    About,
+    Segment,
+    Image as _Image,
+    Text,
+    Row as _Row
+} from '@/app/_types';
 import RichTextParser from '../_components/richTextParser';
 
-export const Content = ({ about }: { about: About }) => {
+export const Row = ({ row }: { row: _Row }) => {
     return (
-        <div className="w-full flex flex-wrap gap-6 items-start">
-            {about.segments.map((s: Segment, index: number) => {
+        <div
+            className={`${
+                row.width ? 'max-w-[' + row.width + 'px]' : 'w-full'
+            } grid gap-4 justify-${row.align}`}
+            style={{
+                gridTemplateColumns: `repeat(${row.columns}, minmax(0, ${
+                    row.width ? row.width / row.columns + 'px' : '1fr'
+                }))`
+            }}
+        >
+            {row.segments.map((s: Segment, index: number) => {
                 let content;
                 if (s.type === 'image') {
                     content = s.content as _Image;
                     return (
-                        <div>
+                        <div key={'segment' + index}>
                             <Image
                                 key={index}
                                 alt={content.alt as string}
@@ -24,25 +39,14 @@ export const Content = ({ about }: { about: About }) => {
                 } else {
                     content = s.content as Text;
                     return (
-                        <div style={{ maxWidth: `${s.width}px` }}>
+                        <div key={'segment' + index}>
                             <RichTextParser html={content.text.html} />
                         </div>
                     );
                 }
             })}
-
-            {/* <Link
-                className="w-[30px] h-full justify-center items-center"
-                target="_blank"
-                href={'https://www.instagram.com/fennarafaela/'}
-            >
-                <Image
-                    width={30}
-                    height={30}
-                    src={'/instagram.png'}
-                    alt="instagram"
-                />
-            </Link> */}
         </div>
     );
 };
+
+export default Row;

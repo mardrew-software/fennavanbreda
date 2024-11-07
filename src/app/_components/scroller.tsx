@@ -42,12 +42,12 @@ export const Scroller = ({
                                 href={`/${slug}/${i.urlPath}`}
                                 className="flex flex-col gap-2"
                             >
-                                {i.mainImage && (
+                                {i.homepageImage && (
                                     <Image
                                         className="hover:opacity-75 rounded-sm"
-                                        src={i.mainImage.url}
-                                        width={i.mainImage.width}
-                                        height={i.mainImage.height}
+                                        src={i.homepageImage.url}
+                                        width={i.homepageImage.width}
+                                        height={i.homepageImage.height}
                                         alt={i.title}
                                     />
                                 )}

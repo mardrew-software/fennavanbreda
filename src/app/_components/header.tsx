@@ -11,27 +11,27 @@ export function Header() {
 
     return (
         <div className={`flex flex-col`}>
-            <div className={`grid grid-cols-3 w-full p-4 items-center`}>
-                <div>
+            <div className={`grid grid-cols-12 w-full p-4 items-center`}>
+                <div className="col-span-2">
                     <div className={`${pathname == '/' ? 'hidden' : ''}`}>
                         <GoBack />
                     </div>
                 </div>
-                <Link href={'/'} className="flex justify-center">
+                <Link href={'/'} className="flex justify-center col-span-8">
                     <span
                         className={`${anticDidone.className} tracking-widest text-4xl hover:text-blue-800`}
                     >
                         Fenna van Breda
                     </span>
                 </Link>
-                <div className="flex gap-2 items-center justify-end px-[1rem]">
+                <div className="flex gap-2 items-center justify-end px-[1rem] col-span-2">
                     <Link href={'/about'}>
                         <h2
                             className={`${
                                 pathname.includes('about')
                                     ? 'text-blue-800'
                                     : ''
-                            } hover:text-blue-800 underline font-bold uppercase`}
+                            } hover:text-blue-800 underline  tracking-wider uppercase`}
                         >
                             about
                         </h2>
@@ -41,3 +41,15 @@ export function Header() {
         </div>
     );
 }
+/* <Link
+                className="w-[30px] h-full justify-center items-center"
+                target="_blank"
+                href={'https://www.instagram.com/fennarafaela/'}
+            >
+                <Image
+                    width={30}
+                    height={30}
+                    src={'/instagram.png'}
+                    alt="instagram"
+                />
+            </Link> */

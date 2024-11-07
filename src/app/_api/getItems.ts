@@ -13,20 +13,42 @@ export async function getItems() {
                 id
                 location
                 startDate
-                summary
                 title
                 urlPath
                 page
-                mainImage {
-                  id
-                  url
-                  width
-                  mimeType
-                  height
+                meta
+                homepageImage {
+                    url
+                    width
+                    size
+                    height
                 }
-                details {
-                  html
-                  text
+                rows {
+                  columns
+                  width
+                  align
+                  segments {
+                    type
+                    content {
+                      ... on Image {
+                        id
+                        image {
+                          url
+                          width
+                          size
+                          height
+                        }
+                        alt
+                      }
+                      ... on Text {
+                        id
+                        text {
+                          html
+                          text
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }            

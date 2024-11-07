@@ -4,19 +4,11 @@ export type Item = {
     location: string;
     urlPath: string;
     id: string;
-    mainImage: Image;
     title: string;
-    details: Description;
-    summary: string;
+    homepageImage: Image;
     page: 'selectedworks' | 'archive' | 'events' | 'words';
-};
-
-export type Image = {
-    id: string;
-    height: number;
-    width: number;
-    url: string;
-    mimeType: string;
+    meta: string;
+    rows: Row[];
 };
 
 export type Description = {
@@ -26,14 +18,20 @@ export type Description = {
 
 export type About = {
     id: string;
-    image: Image;
+    rows: Row[];
+};
+
+export type Row = {
+    width?: number;
+    align: string;
+    columns: number;
     segments: Segment[];
 };
 
 export type Segment = {
     type: string;
     width: number;
-    content: Image2 | Text;
+    content: (Image & { alt?: string }) | Text;
 };
 
 export type Text = {
@@ -43,14 +41,10 @@ export type Text = {
     };
 };
 
-export type Image2 = {
-    image: {
-        id: string;
-        height: number;
-        width: number;
-        url: string;
-        mimeType: string;
-    };
-
-    alt?: string;
+export type Image = {
+    id: string;
+    height: number;
+    width: number;
+    url: string;
+    mimeType: string;
 };

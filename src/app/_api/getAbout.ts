@@ -10,24 +10,29 @@ export async function getAbout() {
             query Abouts {
               abouts {
                 id
-                segments {
-                  type
-                  content {
-                    ... on Image {
-                      id
-                      image {
-                        url
-                        width
-                        size
-                        height
+                rows {
+                  columns
+                  width
+                  align
+                  segments {
+                    type
+                    content {
+                      ... on Image {
+                        id
+                        image {
+                          url
+                          width
+                          size
+                          height
+                        }
+                        alt
                       }
-                      alt
-                    }
-                    ... on Text {
-                      id
-                      text {
-                        html
-                        text
+                      ... on Text {
+                        id
+                        text {
+                          html
+                          text
+                        }
                       }
                     }
                   }
@@ -37,6 +42,7 @@ export async function getAbout() {
             `
         })
     });
+
     const json = await response.json();
     if (json && json.data) {
         return json.data.abouts[0];
