@@ -8,19 +8,13 @@ const ganjaFlower = Gamja_Flower({ weight: ['400'], subsets: ['latin'] });
 
 export const Item = ({ item }: { item: ItemType }) => {
     return (
-        <div className="w-full flex flex-col items-center px-4 gap-8">
+        <div className="w-full flex flex-col items-center px-4">
             {item.title && (
                 <div className="flex flex-col items-center gap-1 w-full">
-                    <div className="w-full grid grid-cols-12 items-align">
-                        <div className="col-span-2"></div>
-                        <div className="flex justify-center col-span-8">
-                            <div
-                                className={`uppercase text-2xl ${ganjaFlower.className}`}
-                            >
-                                {item.title}
-                            </div>
-                        </div>
-                        <div className="col-span-2"></div>
+                    <div
+                        className={`uppercase text-2xl ${ganjaFlower.className}`}
+                    >
+                        {item.title}
                     </div>
                     <div className="flex flex-row gap-2">
                         <FullDate

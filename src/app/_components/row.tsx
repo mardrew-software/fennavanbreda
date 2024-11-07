@@ -5,7 +5,8 @@ import {
     Segment,
     Image as _Image,
     Text,
-    Row as _Row
+    Row as _Row,
+    SegmentImage
 } from '@/app/_types';
 import RichTextParser from '../_components/richTextParser';
 
@@ -24,16 +25,24 @@ export const Row = ({ row }: { row: _Row }) => {
             {row.segments.map((s: Segment, index: number) => {
                 let content;
                 if (s.type === 'image') {
-                    content = s.content as _Image & { alt?: string };
+                    content = s.content as SegmentImage;
                     return (
                         <div key={'segment' + index}>
-                            <Image
-                                key={index}
-                                alt={content.alt as string}
-                                src={content.url}
-                                width={content.width}
-                                height={content.height}
-                            />
+                            {content.image.width ? (
+                                <Image
+                                    key={index}
+                                    alt={content.alt as string}
+                                    src={content.image.url}
+                                    width={content.image.width}
+                                    height={content.image.height}
+                                />
+                            ) : (
+                                <iframe
+                                    src={content.image.url}
+                                    width="100%"
+                                    height="800px"
+                                />
+                            )}
                         </div>
                     );
                 } else {

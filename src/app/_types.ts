@@ -31,8 +31,10 @@ export type Row = {
 export type Segment = {
     type: string;
     width: number;
-    content: (Image & { alt?: string }) | Text;
+    content: SegmentImage | Text;
 };
+
+export type SegmentImage = { image: Image; alt?: string; meta?: string };
 
 export type Text = {
     text: {

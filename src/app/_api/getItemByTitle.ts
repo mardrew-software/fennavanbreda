@@ -16,7 +16,6 @@ export async function getItemByTitle(slug: string) {
                 title
                 urlPath
                 page
-                meta
                 rows {
                   columns
                   width
@@ -33,6 +32,7 @@ export async function getItemByTitle(slug: string) {
                           height
                         }
                         alt
+                        meta
                       }
                       ... on Text {
                         id

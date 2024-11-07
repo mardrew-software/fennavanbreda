@@ -16,7 +16,6 @@ export async function getItems() {
                 title
                 urlPath
                 page
-                meta
                 homepageImage {
                     url
                     width
@@ -39,6 +38,7 @@ export async function getItems() {
                           height
                         }
                         alt
+                        meta
                       }
                       ... on Text {
                         id
