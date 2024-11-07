@@ -24,15 +24,15 @@ export const Row = ({ row }: { row: _Row }) => {
             {row.segments.map((s: Segment, index: number) => {
                 let content;
                 if (s.type === 'image') {
-                    content = s.content as _Image;
+                    content = s.content as _Image & { alt?: string };
                     return (
                         <div key={'segment' + index}>
                             <Image
                                 key={index}
                                 alt={content.alt as string}
-                                src={content.image.url}
-                                width={content.image.width}
-                                height={content.image.height}
+                                src={content.url}
+                                width={content.width}
+                                height={content.height}
                             />
                         </div>
                     );
