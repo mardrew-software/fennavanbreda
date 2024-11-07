@@ -69,7 +69,7 @@ export const Scrollers = ({ items }: { items: Item[] }) => {
                 onTouchStart={onTouchStart}
                 onTouchMove={onTouchMove}
                 onTouchEnd={onTouchEnd}
-                className="flex flex-col pb-8 lg:hidden px-8 w-full"
+                className="flex flex-col pb-8 lg:hidden px-4 w-full"
             >
                 <Slider label={indexes[currIndex]} slide={updateIndex} />
                 {indexes.map((index: string, n: number) => {

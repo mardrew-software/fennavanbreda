@@ -19,14 +19,14 @@ export function Header() {
                         <GoBack />
                     </div>
                 </div>
-                <Link href={'/'} className="flex justify-center col-span-8">
+                <Link href={'/'} className="flex lg:justify-center col-span-8">
                     <span
                         className={`${anticDidone.className} tracking-widest text-2xl lg:text-4xl hover:text-blue-800`}
                     >
                         Fenna van Breda
                     </span>
                 </Link>
-                <div className="flex gap-2 items-center justify-end px-[1rem] col-span-4 lg:col-span-2">
+                <div className="flex gap-2 items-center justify-end lg:px-[1rem] col-span-4 lg:col-span-2">
                     <Link href={'/about'}>
                         <h2
                             className={`${
