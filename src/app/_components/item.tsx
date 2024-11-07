@@ -8,7 +8,7 @@ const ganjaFlower = Gamja_Flower({ weight: ['400'], subsets: ['latin'] });
 
 export const Item = ({ item }: { item: ItemType }) => {
     return (
-        <div className="w-full flex flex-col items-center px-4">
+        <div className="w-full flex flex-col items-center">
             {item.title && (
                 <div className="flex flex-col items-center gap-1 w-full">
                     <div
