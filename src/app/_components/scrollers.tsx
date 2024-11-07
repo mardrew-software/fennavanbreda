@@ -4,7 +4,7 @@ import { Item } from '../_types';
 import { Scroller } from './scroller';
 import { Slider } from './slider';
 
-const indexes = ['events', 'selected works', 'words', 'archive'];
+const indexes = ['selected works', 'events', 'words', 'archive'];
 const slugs = indexes.map((i) => i.toLocaleLowerCase().replaceAll(' ', ''));
 
 export const Scrollers = ({ items }: { items: Item[] }) => {

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Item } from '../_types';
 
 import Image from 'next/image';
-import { Gamja_Flower, Mali, Roboto_Mono } from 'next/font/google';
+import { Gamja_Flower } from 'next/font/google';
 import { MouseEventHandler } from 'react';
 
 const ganjaFlower = Gamja_Flower({ weight: ['400'], subsets: ['latin'] });
@@ -44,7 +44,7 @@ export const Scroller = ({
                             >
                                 {i.homepageImage && (
                                     <Image
-                                        className="hover:opacity-75 rounded-sm"
+                                        className="hover:opacity-75 rounded-sm cursor-pointer"
                                         src={i.homepageImage.url}
                                         width={i.homepageImage.width}
                                         height={i.homepageImage.height}

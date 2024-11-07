@@ -16,3 +16,7 @@
         border: 3px solid rgb(84, 84, 84);
     }
 }
+
+.yarl__slide_title_container {
+    display: none;
+}

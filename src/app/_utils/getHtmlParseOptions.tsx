@@ -70,8 +70,8 @@ const LinkTag = ({
 };
 
 const handleSpans = (nodeChild: DOMNode) => {
-    if (nodeChild.type === 'tag') {
-        let text = nodeChild.children[0] as TextDom;
+    if (nodeChild.type === 'tag' && 'children' in nodeChild) {
+        const text = nodeChild.children[0] as TextDom;
         if (text?.data) {
             return (
                 <LinkTag
@@ -82,9 +82,9 @@ const handleSpans = (nodeChild: DOMNode) => {
                 />
             );
         }
-    } else if (nodeChild.type === 'text') {
+    } else if (nodeChild.type === 'text' && 'data' in nodeChild) {
         return (
-            <span className="py-1 w-fit " key={nodeChild.data}>
+            <span className="py-1 w-fit" key={nodeChild.data}>
                 {nodeChild.data}
             </span>
         );
