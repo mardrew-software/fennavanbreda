@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-module.exports = {
-    nextConfig,
+const nextConfig = {
     images: {
-        domains: ['media.graphassets.com']
-    }
+        domains: [
+            'media.graphassets.com',
+            'eu-central-1-shared-euc1-02.graphassets.com',
+        ],
+    },
+    // You can add other Next.js configurations here if needed
 };
+
+module.exports = nextConfig;
