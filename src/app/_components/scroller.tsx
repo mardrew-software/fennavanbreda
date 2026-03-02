@@ -12,22 +12,19 @@ export const Scroller = ({
     slug,
     label,
     items,
-    onMouseEnter,
-    onMouseLeave,
+    onPointerOver,
     className
 }: {
     slug: string;
     label: string;
     items: Item[];
-    onMouseEnter?: MouseEventHandler<HTMLDivElement>;
-    onMouseLeave?: MouseEventHandler<HTMLDivElement>;
+    onPointerOver?: MouseEventHandler<HTMLDivElement>;
     className?: string;
 }) => {
     return (
         <div
             className={`flex flex-col gap-4 h-full ${className}`}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
+            onPointerOver={onPointerOver}
         >
             <h2
                 className={`hidden lg:flex text-2xl uppercase ${ganjaFlower.className}`}

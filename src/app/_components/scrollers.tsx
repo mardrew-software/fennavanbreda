@@ -4,7 +4,8 @@ import { Item } from '../_types';
 import { Scroller } from './scroller';
 import { Slider } from './slider';
 
-const indexes = ['selected works', 'events', 'words', 'archive'];
+// const indexes = ['selected works', 'events', 'words', 'archive'];
+const indexes = ['selected works', 'archive'];
 const slugs = indexes.map((i) => i.toLocaleLowerCase().replaceAll(' ', ''));
 
 export const Scrollers = ({ items }: { items: Item[] }) => {
@@ -39,28 +40,25 @@ export const Scrollers = ({ items }: { items: Item[] }) => {
     return (
         <>
             <div
-                className={`hidden lg:flex px-4 w-full flex-row ${
-                    hoveredColumn === null ? 'justify-between' : ''
-                } gap-4`}
+                className={`hidden lg:flex px-4 w-full flex-row ${hoveredColumn === null ? 'justify-between' : ''
+                    } gap-4`}
             >
                 {indexes.map((index: string, n: number) => {
                     return (
                         <Scroller
-                            onMouseEnter={() => setHoveredColumn(n)}
-                            onMouseLeave={() => setHoveredColumn(null)}
+                            onPointerOver={() => setHoveredColumn(n)}
                             key={n}
                             slug={slugs[n]}
                             label={index}
                             items={items.filter(
                                 (i: Item) => i.page === slugs[n]
                             )}
-                            className={`transition-all duration-300 ${
-                                hoveredColumn === null
-                                    ? 'w-1/4'
-                                    : hoveredColumn === n
-                                    ? 'w-1/2'
-                                    : 'w-1/6'
-                            }`}
+                            className={`transition-all duration-700 ${hoveredColumn === null
+                                ? 'w-1/2'
+                                : hoveredColumn === n
+                                    ? 'w-2/3'
+                                    : 'w-1/3'
+                                }`}
                         />
                     );
                 })}

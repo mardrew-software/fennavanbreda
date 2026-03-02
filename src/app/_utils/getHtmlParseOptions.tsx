@@ -1,6 +1,6 @@
 'use client';
 import { Element, Text as TextDom } from 'domhandler';
-import { DOMNode, HTMLReactParserOptions } from 'html-react-parser';
+import { DOMNode, domToReact, HTMLReactParserOptions } from 'html-react-parser';
 import React from 'react';
 import YouTubePlayer from 'react-player/youtube';
 import SoundCloudPlayer from 'react-player/soundcloud';
@@ -58,9 +58,8 @@ const LinkTag = ({
             onClick={(e) => {
                 e.stopPropagation();
             }}
-            className={`${
-                className ? className : ''
-            } bg-white font-[500] TextDom-black hover:TextDom-slate-400 underline cursor-pointer`}
+            className={`${className ? className : ''
+                } bg-white font-[500] TextDom-black hover:TextDom-slate-400 underline cursor-pointer`}
             href={href}
             target="_blank"
         >
@@ -94,34 +93,32 @@ const handleSpans = (nodeChild: DOMNode) => {
 export const options: HTMLReactParserOptions = {
     replace: (domNode: DOMNode) => {
         const node = domNode as Element;
+
         if (node.name === 'a') {
             const text = node.children[0] as TextDom;
             return (
                 <LinkTag
-                    key={node.attribs.title}
-                    data={text.data}
-                    href={node.attribs.href}
+                    key={node.attribs?.href || Math.random()}
+                    data={text?.data || ''}
+                    href={node.attribs?.href}
                 />
             );
-        } else if (node.name === 'iframe') {
+        }
+
+        if (node.name === 'iframe') {
             return <Player key={node.attribs.title} url={node.attribs.title} />;
-        } else if (node.name === 'p') {
-            if (node.children.length > 1) {
-                return (
-                    <p key={node.attribs.title} className="inline">
-                        {node.children.map((c, i) => handleSpans(c as DOMNode))}
-                    </p>
-                );
-            } else {
-                const text = node.children[0] as TextDom;
-                if (node.children[0]) {
-                    return (
-                        <p key={node.attribs.title}>
-                            <span className="py-1 w-fit">{text.data}</span>
-                        </p>
-                    );
-                }
-            }
+        }
+
+        if (node.name === 'p') {
+            // Check if paragraph is empty to avoid rendering empty tags
+            if (!node.children || node.children.length === 0) return <br />;
+
+            return (
+                <p key={Math.random()} className="flex flex-wrap gap-1">
+                    {/* This ensures nested tags like <strong> aren't deleted */}
+                    {domToReact(node.children as DOMNode[], options)}
+                </p>
+            );
         }
     }
 };
